@@ -61,5 +61,21 @@ export class Player {
        return name;
     }
 
- 
+    public ReceiveDamage(attack:number)
+    {
+        if(attack <= this.Defense)
+        return;
+
+        if(this._LifePoints <= this.minLifePoints)
+        return;
+
+        this._LifePoints -= attack - this.Defense;
+    }
+
+    //TODO Create class monster first
+    // public DealDamage(attack:number)
+    // {
+    //     if(attack <= this.Defense)
+    //     return;
+    // }
 }
