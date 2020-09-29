@@ -1,0 +1,30 @@
+{
+  "name": "rpg-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RPlima/RPG-NodeJs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RPlima/RPG-NodeJs/issues"
+  },
+  "homepage": "https://github.com/RPlima/RPG-NodeJs#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/plugin-transform-typescript": "^7.11.0",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.10.4",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
+  }
+}
