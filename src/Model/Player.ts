@@ -103,6 +103,16 @@ export class Player {
         this._MaxLifePoints = this.MaxLifePoints + 10;
         this._Level += 1; 
     }
+
+    public ReceiveExp(exp :number)
+    {
+
+    }
+
+    public ReceiveCoins(coins :number)
+    {
+
+    }
     //TODO Create class monster first
     // public DealDamage(attack:number)
     // {

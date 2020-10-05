@@ -4,24 +4,27 @@ var lib_Monster=  require('../Model/Monster.ts');
 
     var monster = new lib_Monster.Monster();
 
-    it('should return a number between the min and the max',() =>   {
+    it('should return a percent of the number that must be between the min and the max',() =>   {
 
-        const random = monster.GetRandomDropVariation()
+        const randomDrop = monster.GetRandomDropVariation(100)
 
-        expect(random).toBeLessThanOrEqual(100 + monster.maxVariationOnDrop)
-        console.log(random);
-        expect(random).toBeGreaterThanOrEqual(100 + monster.minVariationOnDrop)
+        expect(randomDrop).toBeLessThanOrEqual(100 + monster.maxVariationOnDrop)
+        console.log(randomDrop);
+        expect(randomDrop).toBeGreaterThanOrEqual(100 + monster.minVariationOnDrop)
+
+       
     });
 
     it('should return a random number, not the same number 3x on sequence',() =>   {
 
-        const random1 = monster.GetRandomDropVariation()
-        const random3 = monster.GetRandomDropVariation()
-        const random2 = monster.GetRandomDropVariation()
+        const random1 = monster.GetRandomDropVariation(100)
+        const random3 = monster.GetRandomDropVariation(100)
+        const random2 = monster.GetRandomDropVariation(100)
 
         expect(random1).not.toBe(random2)
         expect(random1).not.toBe(random3)
         expect(random2).not.toBe(random3)
+        
     });
 
 

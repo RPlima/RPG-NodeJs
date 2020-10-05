@@ -1,4 +1,6 @@
 import { isGenericTypeAnnotation } from "@babel/types";
+import { Player } from "./Player";
+require('../Model/Player.ts');
 
 export class Monster {
 
@@ -14,7 +16,7 @@ export class Monster {
         this._Level = 0
         this._Name = ''
         this._ExperienceDrop = 0
-        this._CoinDrop= 0
+        this._CoinsDrop= 0
         this._Attack = 0
         this._Defense = 0
         this._Description = ''
@@ -25,11 +27,12 @@ export class Monster {
     private _Level: number;
     private _Name: string;
     private _ExperienceDrop: number;
-    private _CoinDrop: number;
+    private _CoinsDrop: number;
     private _Attack: number;
     private _Defense: number;
     private _Description: String;
-
+    //private _ItensToDrop: Array<Item>; TODO
+    //private _ItensToDropChance: Array<number>; TODO
 
     public get LifePoints(): number 
     {
@@ -57,9 +60,9 @@ export class Monster {
         return this._ExperienceDrop;
     }
 
-    public get CoinDrop(): number 
+    public get CoinsDrop(): number 
     {
-        return this._CoinDrop;
+        return this._CoinsDrop;
     }
 
     public get Attack(): number 
@@ -93,44 +96,55 @@ export class Monster {
         if(attack <= this._Defense)
         return;
 
-        if(this._LifePoints <= this.minLifePoints)
-        return;
-
+        
         this._LifePoints -= attack - this._Defense;
-
-        if(this._LifePoints <= 0)
-         this.Die();
+        
+        if(this._LifePoints <= 0){
+            this.Die();
+            return;
+        }
+       
     }
 
+ 
     public Die()
     {
-        //TODO
+        this.DropOnDeath;
     }
 
-    public DropOnDeath()
+    public DropOnDeath(player :Player) //NEED TO TEST!!!!!!!!!
     {
-        //TODO
+        player.ReceiveExp(this.DropExp());
+        player.ReceiveCoins(this.DropCoins());
+        //this.DropItem; TODO   
     }
 
     public DropExp()
     {
-        //TODO
+        return this.GetRandomDropVariation(this._ExperienceDrop)
     }
 
     public DropCoins()
     {
-        //TODO
+        return this.GetRandomDropVariation(this._CoinsDrop)
     }
 
-    public DropItem()
-    {
-        //TODO
-    }
 
-    private GetRandomDropVariation() {
+
+    
+
+    //TODO
+    // public DropItem()
+    // {
+    //     //TODO
+    // }
+
+    private GetRandomDropVariation(ValueToDrop :number) {
 
         const random =  Math.floor(Math.random() * (this.maxVariationOnDrop + (this.minVariationOnDrop * -1))) + this.minVariationOnDrop;
-        return 100 + random;
+        const PercentToDrop =100 + random;
+        return (ValueToDrop/100) * PercentToDrop
+
     }
 
 
