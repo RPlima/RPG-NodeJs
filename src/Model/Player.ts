@@ -1,5 +1,3 @@
-import { isGenericTypeAnnotation } from "@babel/types";
-
 export class Player {
     private readonly levelInitial: number = 1;
     private readonly minLifePoints: number = 0;
@@ -8,6 +6,7 @@ export class Player {
     private readonly experienceInitial: number = 0;
     private readonly attackInitial: number = 1;
     private readonly defenseInitial: number = 1;
+    private readonly areaIdInitial: number = 1;
 
     constructor(name: string) 
     {
@@ -18,6 +17,7 @@ export class Player {
         this._Experience = this.experienceInitial;
         this._Attack = this.attackInitial;
         this._Defense = this.defenseInitial;
+        this._AreaId = this.areaIdInitial;
     }
 
     private _LifePoints: number;
@@ -27,7 +27,7 @@ export class Player {
     private _Experience: number;
     private _Attack: number;
     private _Defense: number;
-
+    private _AreaId: number;
 
     public get LifePoints(): number 
     {
@@ -60,6 +60,10 @@ export class Player {
         return this._Defense;
     }
 
+    public get AreaId(): number {
+        return this._AreaId;
+    }
+
     private SanitazeNamePlayer(name:string) : string
     {
        if(name.length == 0 || !name.trim())
@@ -80,11 +84,11 @@ export class Player {
         this._LifePoints -= attack - this._Defense;
 
         if(this._LifePoints <= 0)
-         this.PenalitesForDeath();
+         this.PenalitesFromDeath();
     }
 
     //trecho de código não testado
-    public PenalitesForDeath()
+    public PenalitesFromDeath()
     {
         if(this._Level == 0 )
         return;
@@ -92,7 +96,6 @@ export class Player {
         this._LifePoints = this._MaxLifePoints - 10;
         this._Defense = this.Defense - 1;
         this._Attack = this.Attack - 1;
-
     }
 
     //trecho de código não testado

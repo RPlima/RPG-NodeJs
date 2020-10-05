@@ -1,0 +1,3 @@
+interface InterfaceItems {
+    Name: string;
+}

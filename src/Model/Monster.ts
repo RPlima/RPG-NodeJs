@@ -1,10 +1,4 @@
-import { isGenericTypeAnnotation } from "@babel/types";
-import { Player } from "./Player";
-require('../Model/Player.ts');
-
 export class Monster {
-
-
     private readonly minLifePoints: number = 0;
     private readonly minVariationOnDrop: number = -10; //Seriam 10% a mais e 10% a menos
     private readonly maxVariationOnDrop: number = 10;
@@ -109,15 +103,18 @@ export class Monster {
  
     public Die()
     {
-        this.DropOnDeath;
+       // this.DropOnDeath;
     }
 
-    public DropOnDeath(player :Player) //NEED TO TEST!!!!!!!!!
-    {
-        player.ReceiveExp(this.DropExp());
-        player.ReceiveCoins(this.DropCoins());
-        //this.DropItem; TODO   
-    }
+    //Tem uns problemas de aqui
+    //Será que a classe player deve estar dentro da monster?
+    //Acredito que a interação das duas classes devem ser feitas por terceiros.
+    // public DropOnDeath(player :Player) //NEED TO TEST!!!!!!!!!
+    // {
+    //     player.ReceiveExp(this.DropExp());
+    //     player.ReceiveCoins(this.DropCoins());
+    //     //this.DropItem; TODO   
+    // }
 
     public DropExp()
     {
@@ -146,7 +143,5 @@ export class Monster {
         return (ValueToDrop/100) * PercentToDrop
 
     }
-
-
 }
 
