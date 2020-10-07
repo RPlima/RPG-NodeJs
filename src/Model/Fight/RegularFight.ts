@@ -26,7 +26,7 @@ export class RegularFight{
        {
            monster.ReceiveDamage(player.Attack);
            player.ReceiveDamage(monster.Attack);
-       }while(player.LifePoints > 0 || monster.LifePoints > 0);
+       }while(player.LifePoints <= 0 || monster.LifePoints <= 0);
 
        if(player.LifePoints <= 0)
         player.PenalitesFromDeath();
