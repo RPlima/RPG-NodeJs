@@ -116,6 +116,17 @@ export class Player {
     {
 
     }
+
+
+    public CreatePlayerTest(attack: number, defense: number, lifePoints: number) : Player
+    {
+        var player = new Player("teste");
+        player._Attack = attack;
+        player._Defense = defense;
+        player._LifePoints = lifePoints;
+        return player;
+    }
+
     //TODO Create class monster first
     // public DealDamage(attack:number)
     // {

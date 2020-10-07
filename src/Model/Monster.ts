@@ -143,5 +143,14 @@ export class Monster {
         return (ValueToDrop/100) * PercentToDrop
 
     }
+
+    public CreateMonsterTest(attack: number, defense: number, lifePoints: number) : Monster
+    {
+        var monster = new Monster();
+        monster._Attack = attack;
+        monster._Defense = defense;
+        monster._LifePoints = lifePoints;
+        return monster;
+    }
 }
 
