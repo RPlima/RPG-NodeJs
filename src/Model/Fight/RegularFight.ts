@@ -1,10 +1,10 @@
 import { injectable, inject } from 'tsyringe';
-import { Monster } from '../Model/Monster';
-import { Player } from '../Model/Player';
+import { Monster } from '../../Model/Monster';
+import { Player } from '../../Model/Player';
 
 
 @injectable()
-export class FightApplication{
+export class RegularFight{
 
     private _monster : Monster;
     private _player : Player;
@@ -18,9 +18,10 @@ export class FightApplication{
         this._player = player;
     }
 
-    public Hunt(player: Player)
+    public Fight(player: Player, monster:Monster)
     {
-       var monster = this.SelectMonster(player.AreaId);
+      // Deve estar na cada de controller
+      // var monster = this.SelectMonster(player.AreaId);
        do
        {
            monster.ReceiveDamage(player.Attack);

@@ -1,4 +1,4 @@
-import { Items } from "./Items";
+import { Items } from "./Item";
 
 export class ItemsRecipe implements InterfaceItems{
     private _Name: string;
