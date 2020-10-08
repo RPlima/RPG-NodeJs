@@ -12,9 +12,8 @@ export class RegularFight{
 
     public Fight(player: Player) : boolean
     {
-      // Deve estar na controller
+      
        var monster = this.SelectMonster(player.AreaId);
-
 
        do
        {
@@ -24,16 +23,19 @@ export class RegularFight{
        while(player.LifePoints <= 0 || monster.LifePoints <= 0);
 
        
-       if(player.LifePoints <= 0){
+       if(player.LifePoints <= 0)
+       {
         player.PenalitesFromDeath();
         console.log("Player Morreu");
-       return true;
+        return true;
        }
        else
-       console.log("MonstroMorreu");
-       player.ReceiveDrop(monster.DropOnDeath());
-       return false;
-        //monster.Die();
+       {
+        console.log("Monstro Morreu");
+        player.ReceiveDrop(monster.DropOnDeath());
+        return false;
+       }
+        
     }
 
     private SelectMonster(areaId: number) : Monster {

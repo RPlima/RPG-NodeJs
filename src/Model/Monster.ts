@@ -13,7 +13,7 @@ export class Monster {
         this._Level = 0
         this._Name = ''
         this._ExperienceDrop = 0
-        this._CoinsDrop= 0
+        this._CoinsDrop = 0
         this._Attack = 0
         this._Defense = 0
         this._Description = ''
@@ -98,18 +98,13 @@ export class Monster {
         
         this._LifePoints -= attack - this._Defense;
         
-        if(this._LifePoints <= 0){
-            this.Die();
-            return;
-        }
+        //Desnecessario
+        // if(this._LifePoints <= 0){
+        //     return;
+        // }
        
     }
 
- 
-    public Die()
-    {
-        this.DropOnDeath;
-    }
 
 
      public DropOnDeath() 
@@ -154,7 +149,7 @@ export class Monster {
         this._Level = 1
         this._Name = 'Montro de Teste'
         this._ExperienceDrop = 10
-        this._CoinsDrop= 20
+        this._CoinsDrop = 20
         this._Attack = 21
         this._Defense = 10
         this._Description = 'Monstro criado só para testar'

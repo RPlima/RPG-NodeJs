@@ -12,6 +12,12 @@ export class Lootbag
         this._ItemList = ItemList;
     }
     
-    
+    public get GetCoins(){
+        return this._Coins;
+    }
+
+    public get GetExp(){
+        return this._Exp;
+    }
 
 }

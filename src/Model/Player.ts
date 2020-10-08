@@ -9,6 +9,8 @@ export class Player {
     private readonly attackInitial: number = 1;
     private readonly defenseInitial: number = 1;
     private readonly areaIdInitial: number = 1;
+    private readonly coinsInitial: number = 0;
+    private readonly experienceToNextLevel: number = 500;
 
     constructor(name: string) 
     {
@@ -20,6 +22,9 @@ export class Player {
         this._Attack = this.attackInitial;
         this._Defense = this.defenseInitial;
         this._AreaId = this.areaIdInitial;
+        this._Coins = this.coinsInitial;
+        this.__ExperienceToNextLevel = this.experienceToNextLevel;
+        
     }
 
     private _LifePoints: number;
@@ -30,6 +35,8 @@ export class Player {
     private _Attack: number;
     private _Defense: number;
     private _AreaId: number;
+    private _Coins: number;
+    private __ExperienceToNextLevel: number;
 
     public get LifePoints(): number 
     {
@@ -64,6 +71,10 @@ export class Player {
 
     public get AreaId(): number {
         return this._AreaId;
+    }
+
+    public get Coins(): number {
+        return this._Coins;
     }
 
     private SanitazeNamePlayer(name:string) : string
@@ -107,21 +118,25 @@ export class Player {
         this._Attack = this.Attack + 1;
         this._MaxLifePoints = this.MaxLifePoints + 10;
         this._Level += 1; 
+        this.__ExperienceToNextLevel *= 1.5;
     }
     
     public ReceiveDrop(Drop: Lootbag)
     {
-        //TODO
+        this.ReceiveCoins(Drop.GetCoins);
+        this.ReceiveExp(Drop.GetExp);
     }
 
     public ReceiveExp(exp :number)
     {
-        //TODO
+        this._Experience += exp;
+        if(this.Experience >= this.__ExperienceToNextLevel)
+        this.LevelUp();
     }
 
     public ReceiveCoins(coins :number)
     {
-        //TODO
+        this._Coins += coins;
     }
 
 
@@ -129,6 +144,11 @@ export class Player {
     {        
         this._Attack = 20;
         this._Defense = 20;
+    }
+
+    public CreateWeakPlayerTest()
+    {        
+        this._LifePoints = 1
     }
 
     //TODO Create class monster first
