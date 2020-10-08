@@ -18,12 +18,9 @@ var lib_Monster=  require('../Model/Monster.ts');
     it('should return a random number, not the same number 3x on sequence',() =>   {
 
         const random1 = monster.GetRandomDropVariation(100)
-        const random3 = monster.GetRandomDropVariation(100)
         const random2 = monster.GetRandomDropVariation(100)
 
         expect(random1).not.toBe(random2)
-        expect(random1).not.toBe(random3)
-        expect(random2).not.toBe(random3)
         
     });
 

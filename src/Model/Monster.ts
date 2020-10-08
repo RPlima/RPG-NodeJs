@@ -1,3 +1,6 @@
+import { Items } from "./Item";
+import { Lootbag } from "./Lootbag";
+
 export class Monster {
     private readonly minLifePoints: number = 0;
     private readonly minVariationOnDrop: number = -10; //Seriam 10% a mais e 10% a menos
@@ -15,6 +18,8 @@ export class Monster {
         this._Defense = 0
         this._Description = ''
     }
+
+
 
     private _LifePoints: number;
     private _MaxLifePoints: number;
@@ -103,18 +108,14 @@ export class Monster {
  
     public Die()
     {
-       // this.DropOnDeath;
+        this.DropOnDeath;
     }
 
-    //Tem uns problemas de aqui
-    //Será que a classe player deve estar dentro da monster?
-    //Acredito que a interação das duas classes devem ser feitas por terceiros.
-    // public DropOnDeath(player :Player) //NEED TO TEST!!!!!!!!!
-    // {
-    //     player.ReceiveExp(this.DropExp());
-    //     player.ReceiveCoins(this.DropCoins());
-    //     //this.DropItem; TODO   
-    // }
+
+     public DropOnDeath() 
+    {
+        return new Lootbag( this.DropExp(), this.DropCoins(), this.DropItem());
+    }
 
     public DropExp()
     {
@@ -128,13 +129,13 @@ export class Monster {
 
 
 
+    //TODO
+     public DropItem()
+     {
+       return  new Array<Items>();
+    }
     
 
-    //TODO
-    // public DropItem()
-    // {
-    //     //TODO
-    // }
 
     private GetRandomDropVariation(ValueToDrop :number) {
 
@@ -144,13 +145,21 @@ export class Monster {
 
     }
 
-    public CreateMonsterTest(attack: number, defense: number, lifePoints: number) : Monster
-    {
-        var monster = new Monster();
-        monster._Attack = attack;
-        monster._Defense = defense;
-        monster._LifePoints = lifePoints;
-        return monster;
+
+
+    public CriaMonstroTeste(){
+
+        this._LifePoints = 100
+        this._MaxLifePoints = 100
+        this._Level = 1
+        this._Name = 'Montro de Teste'
+        this._ExperienceDrop = 10
+        this._CoinsDrop= 20
+        this._Attack = 21
+        this._Defense = 10
+        this._Description = 'Monstro criado só para testar'
+
     }
+
 }
 

@@ -3,46 +3,43 @@ import { Monster } from '../../Model/Monster';
 import { Player } from '../../Model/Player';
 
 
-//@injectable()
 export class RegularFight{
 
-    // private _monster : Monster;
-    // private _player : Player;
+     constructor()
+     {
+        
+     }
 
-    // constructor(
-    //     @inject('Monster') monster: Monster,
-    //     @inject('Player') player: Player
-    // )
-    // {
-    //     this._monster = monster;
-    //     this._player = player;
-    // }
-
-    public Fight(player: Player, monster:Monster) : boolean
+    public Fight(player: Player) : boolean
     {
       // Deve estar na controller
-      // var monster = this.SelectMonster(player.AreaId);
+       var monster = this.SelectMonster(player.AreaId);
+
+
        do
        {
            monster.ReceiveDamage(player.Attack);
            player.ReceiveDamage(monster.Attack);
-       }while(player.LifePoints <= 0 || monster.LifePoints <= 0);
+       }
+       while(player.LifePoints <= 0 || monster.LifePoints <= 0);
 
        
-       if(player.LifePoints <= 0)
-       //TODO
-        //player.PenalitesFromDeath();
+       if(player.LifePoints <= 0){
+        player.PenalitesFromDeath();
+        console.log("Player Morreu");
        return true;
+       }
        else
-       //TODO
+       console.log("MonstroMorreu");
+       player.ReceiveDrop(monster.DropOnDeath());
        return false;
         //monster.Die();
     }
 
     private SelectMonster(areaId: number) : Monster {
-        var monster = new Monster();
-        //TODO
         //Select Random Monster per Area from Database --> Create MonsterRepository
+        var monster = new Monster();
+        monster.CriaMonstroTeste();
         return monster;
     }
 }

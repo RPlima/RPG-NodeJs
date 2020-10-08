@@ -1,3 +1,5 @@
+import { Lootbag } from "./Lootbag";
+
 export class Player {
     private readonly levelInitial: number = 1;
     private readonly minLifePoints: number = 0;
@@ -86,7 +88,7 @@ export class Player {
         if(this._LifePoints <= 0)
          this.PenalitesFromDeath();
     }
-
+    
     //trecho de código não testado
     public PenalitesFromDeath()
     {
@@ -106,25 +108,27 @@ export class Player {
         this._MaxLifePoints = this.MaxLifePoints + 10;
         this._Level += 1; 
     }
+    
+    public ReceiveDrop(Drop: Lootbag)
+    {
+        //TODO
+    }
 
     public ReceiveExp(exp :number)
     {
-
+        //TODO
     }
 
     public ReceiveCoins(coins :number)
     {
-
+        //TODO
     }
 
 
-    public CreatePlayerTest(attack: number, defense: number, lifePoints: number) : Player
-    {
-        var player = new Player("teste");
-        player._Attack = attack;
-        player._Defense = defense;
-        player._LifePoints = lifePoints;
-        return player;
+    public CreatePlayerTest()
+    {        
+        this._Attack = 20;
+        this._Defense = 20;
     }
 
     //TODO Create class monster first
@@ -133,4 +137,5 @@ export class Player {
     //     if(attack <= this.Defense)
     //     return;
     // }
+
 }
