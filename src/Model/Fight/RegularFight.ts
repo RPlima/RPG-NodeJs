@@ -18,22 +18,20 @@ export class RegularFight{
        do
        {
            monster.ReceiveDamage(player.Attack);
-           if(monster.LifePoints > 0){
+           if(monster.LifePoints >= 0)
             player.ReceiveDamage(monster.Attack);
-            }
        }
-       while(player.LifePoints > 0 &&  monster.LifePoints > 0 );
-
+       while(player.LifePoints >= 0 && monster.LifePoints >= 0 );
        
        if(player.Died())
        {
         player.PenalitesFromDeath();
-        console.log("Player Morreu");
+        //console.log("Player Morreu");
         return true;
        }
        else
        {
-        console.log("Monstro Morreu");
+        //console.log("Monstro Morreu");
         player.ReceiveDrop(monster.DropOnDeath());
         return false;
        }
@@ -43,7 +41,7 @@ export class RegularFight{
     private SelectMonster(areaId: number) : Monster {
         //Select Random Monster per Area from Database --> Create MonsterRepository
         var monster = new Monster();
-        monster.CriaMonstroTeste();
+        monster.CreateMonsterTest();
         return monster;
     }
 }

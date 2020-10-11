@@ -90,13 +90,10 @@ export class Monster {
     }
 
 
-    public ReceiveDamage(attack:number)
+    public ReceiveDamage(attack: number)
     {
         //4*(atk - def/2)
-
-        var damageReceived = 4 * (attack - this.Defense / 2)
-        this._LifePoints -= damageReceived;
-               
+        this._LifePoints -= 4 * (attack - this.Defense / 2);
     }
 
     public Died(){
@@ -142,7 +139,7 @@ export class Monster {
 
 
 
-    public CriaMonstroTeste(){
+    public CreateMonsterTest(){
 
         this._LifePoints = 100
         this._MaxLifePoints = 100

@@ -15,7 +15,7 @@ import { RegularFight } from '../Model/Fight/RegularFight';
       
     });
 
-    it('Experience must increase when player kill the monster', () => {
+    test('Experience must increase when player kill the monster', () => {
       player.CreatePlayerTest();
       regularFight.Fight(player);
       expect(player.Experience).toBeGreaterThan(0);
@@ -24,27 +24,22 @@ import { RegularFight } from '../Model/Fight/RegularFight';
 
     });
 
-    it('Coins must increase when player kill the monster', () => {
+    test('Coins must increase when player kill the monster', () => {
       player.CreatePlayerTest();
       regularFight.Fight(player);
       expect(player.Coins).toBeGreaterThan(0);
       console.log("Moedas do cliente subiu para" + player.Coins);
+    });
 
-
+    test('LEVEL UP when kill a monster', () => {
+       
+    
     });
 
     //TODO
-    it('Player may die if his life points hits 0 or less', () => {
+    test('Player may die if his life points hits 0 or less', () => {
       player.CreateWeakPlayerTest();
       regularFight.Fight(player);
-      
 
     });
-    //TODO
-    it('LEVEL UP', () => {
-      
-      
-
-    });
-
 });

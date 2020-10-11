@@ -1,8 +1,9 @@
 const { TestResult } = require('@jest/types');
-var lib_Monster=  require('../Model/Monster.ts');
+import { Monster } from '../Model/Monster';
+  var monster = new Monster();
   describe('GetRandomDropVariation Method', () => {
 
-    var monster = new lib_Monster.Monster();
+
 
     it('should return a percent of the number that must be between the min and the max',() =>   {
 
@@ -28,9 +29,9 @@ var lib_Monster=  require('../Model/Monster.ts');
     
     it('Should receive damage when attacked', () => {
 
-      monster.CriaMonstroTeste()
-      monster.ReceiveDamage(50)
-      expect(monster.LifePoints).toBeLessThan(monster.MaxLifePoints)
+      monster.CreateMonsterTest();
+      monster.ReceiveDamage(50);
+      expect(monster.LifePoints).toBeLessThan(monster.MaxLifePoints);
 
     });
   });

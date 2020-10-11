@@ -1,6 +1,7 @@
 import { Lootbag } from "./Lootbag";
 
-export class Player {
+export class Player 
+{
     private readonly levelInitial: number = 1;
     private readonly minLifePoints: number = 0;
     private readonly maxLifePoints: number = 100;
@@ -11,6 +12,9 @@ export class Player {
     private readonly areaIdInitial: number = 1;
     private readonly coinsInitial: number = 0;
     private readonly experienceToNextLevel: number = 500;
+    private readonly experienceToMinimunLevel: number = 0;
+    private readonly experiencePreviousMinimunLevel: number = 0;
+    private readonly experiencePreviousNextLevel: number = 0;
 
     constructor(name: string) 
     {
@@ -23,8 +27,10 @@ export class Player {
         this._Defense = this.defenseInitial;
         this._AreaId = this.areaIdInitial;
         this._Coins = this.coinsInitial;
-        this.__ExperienceToNextLevel = this.experienceToNextLevel;
-        
+        this._ExperienceToNextLevel = this.experienceToNextLevel;
+        this._ExperienceToMinimunLevel = this.experienceToMinimunLevel;
+        this._ExperiencePreviousNextLevel = this.experiencePreviousNextLevel;
+        this._ExperiencePreviousMinimunLevel = this.experiencePreviousMinimunLevel;
     }
 
     private _LifePoints: number;
@@ -36,14 +42,18 @@ export class Player {
     private _Defense: number;
     private _AreaId: number;
     private _Coins: number;
-    private __ExperienceToNextLevel: number;
+    private _ExperienceToNextLevel: number;
+    private _ExperienceToMinimunLevel: number;
+    private _ExperiencePreviousNextLevel: number;
+    private _ExperiencePreviousMinimunLevel: number;
 
     public get LifePoints(): number 
     {
         return this._LifePoints;
     }
 
-    public get MaxLifePoints(): number {
+    public get MaxLifePoints(): number 
+    {
         return this._MaxLifePoints;
     }
 
@@ -57,60 +67,89 @@ export class Player {
         return this._Name;
     }
 
-    public get Experience(): number {
+    public get Experience(): number 
+    {
         return this._Experience;
     }
-    
-    public get Attack(): number {
+
+    public get Attack(): number 
+    {
         return this._Attack;
     }
 
-    public get Defense(): number {
+    public get Defense(): number 
+    {
         return this._Defense;
     }
 
-    public get AreaId(): number {
+    public get AreaId(): number 
+    {
         return this._AreaId;
     }
 
-    public get Coins(): number {
+    public get Coins(): number 
+    {
         return this._Coins;
     }
 
-    private SanitazeNamePlayer(name:string) : string
+    public get ExperienceToNextLevel(): number 
     {
-       if(name.length == 0 || !name.trim())
-       {
+        return this._ExperienceToNextLevel;
+    }
+
+    public get ExperienceMinimunLevel(): number 
+    {
+        return this._ExperienceToMinimunLevel;
+    }
+
+    public get ExperiencePreviousNextLevel(): number 
+    {
+        return this._ExperiencePreviousNextLevel;
+    }
+
+    public get ExperiencePreviousMinimunLevel(): number 
+    {
+        return this._ExperiencePreviousMinimunLevel;
+    }
+
+    private SanitazeNamePlayer(name: string): string 
+    {
+        if (name.length == 0 || !name.trim()) 
             throw new Error("O nome não pode ser vazio");
-       }
-       return name;
+        return name;
     }
 
-    public ReceiveDamage(attack:number)
+    public ReceiveDamage(attack: number) 
     {
-
-        var damageReceived = 4 * (attack - this.Defense / 2)
-        this._LifePoints -= damageReceived;
-
+        this._LifePoints -= 4 * (attack - this.Defense / 2);
     }
 
-    public Died(){
-        if (this._LifePoints <= this.minLifePoints){
+    public Died() 
+    {
+        if (this._LifePoints <= this.minLifePoints) 
             return true;
-        } else {
-         return false;
-        }
+        else 
+            return false;
     }
-    
-    //Precisa ser corrigido
+
+    //Precisa do cálculo de experiência antes.
     public PenalitesFromDeath()
     {
-        if(this._Level == 0 )
-        return;
-        
-        this._LifePoints = this._MaxLifePoints - 10;
-        this._Defense = this.Defense - 1;
-        this._Attack = this.Attack - 1;
+        if (this._Level == 1)
+            return;
+
+        this._Experience -= this.ExperienceToNextLevel / 4;
+
+        if(this._Experience <= this.ExperienceMinimunLevel)
+        {
+            this._ExperienceToMinimunLevel = this.ExperiencePreviousMinimunLevel;
+            this._ExperienceToNextLevel = this.ExperiencePreviousNextLevel;
+
+            this._LifePoints = this._MaxLifePoints - 10;
+            this._Defense = this.Defense - 1;
+            this._Attack = this.Attack - 1;
+            this._Level = this.Level - 1;
+        }
     }
 
     //trecho de código não testado
@@ -119,45 +158,43 @@ export class Player {
         this._Defense = this.Defense + 1;
         this._Attack = this.Attack + 1;
         this._MaxLifePoints = this.MaxLifePoints + 10;
-        this._Level += 1; 
-        this.__ExperienceToNextLevel *= 1.5;
+        this._Level += 1;
+
+        //Experience
+        this._ExperiencePreviousNextLevel = this.ExperienceToNextLevel;
+        this._ExperiencePreviousMinimunLevel = this.ExperienceMinimunLevel;
+        
+        this._ExperienceToMinimunLevel = this.ExperienceToNextLevel;
+        this._ExperienceToNextLevel += (this._ExperienceToNextLevel * 1.5);
     }
-    
-    public ReceiveDrop(Drop: Lootbag)
+
+    public ReceiveDrop(Drop: Lootbag) 
     {
         this.ReceiveCoins(Drop.GetCoins);
         this.ReceiveExp(Drop.GetExp);
     }
 
-    public ReceiveExp(exp :number)
+    public ReceiveExp(exp: number) 
     {
         this._Experience += exp;
-        if(this.Experience >= this.__ExperienceToNextLevel)
-        this.LevelUp();
+        if (this.Experience >= this._ExperienceToNextLevel)
+            this.LevelUp();
     }
 
-    public ReceiveCoins(coins :number)
+    public ReceiveCoins(coins: number) 
     {
         this._Coins += coins;
     }
 
 
-    public CreatePlayerTest()
-    {        
+    public CreatePlayerTest() 
+    {
         this._Attack = 20;
         this._Defense = 20;
     }
 
-    public CreateWeakPlayerTest()
-    {        
+    public CreateWeakPlayerTest() 
+    {
         this._LifePoints = 1
     }
-
-    //TODO Create class monster first
-    // public DealDamage(attack:number)
-    // {
-    //     if(attack <= this.Defense)
-    //     return;
-    // }
-
 }
