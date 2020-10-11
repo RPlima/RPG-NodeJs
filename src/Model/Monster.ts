@@ -92,20 +92,20 @@ export class Monster {
 
     public ReceiveDamage(attack:number)
     {
-        if(attack <= this._Defense)
-        return;
+        //4*(atk - def/2)
 
-        
-        this._LifePoints -= attack - this._Defense;
-        
-        //Desnecessario
-        // if(this._LifePoints <= 0){
-        //     return;
-        // }
-       
+        var damageReceived = 4 * (attack - this.Defense / 2)
+        this._LifePoints -= damageReceived;
+               
     }
 
-
+    public Died(){
+        if (this._LifePoints <= this.minLifePoints){
+            return true;
+        } else {
+         return false
+        }
+    }
 
      public DropOnDeath() 
     {

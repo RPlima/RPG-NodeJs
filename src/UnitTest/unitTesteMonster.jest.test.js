@@ -9,7 +9,6 @@ var lib_Monster=  require('../Model/Monster.ts');
         const randomDrop = monster.GetRandomDropVariation(100)
 
         expect(randomDrop).toBeLessThanOrEqual(100 + monster.maxVariationOnDrop)
-        console.log(randomDrop);
         expect(randomDrop).toBeGreaterThanOrEqual(100 + monster.minVariationOnDrop)
 
        
@@ -23,7 +22,18 @@ var lib_Monster=  require('../Model/Monster.ts');
         expect(random1).not.toBe(random2)
         
     });
-
-
-
   });
+
+  describe('Recieve damage', () => {
+    
+    it('Should receive damage when attacked', () => {
+
+      monster.CriaMonstroTeste()
+      monster.ReceiveDamage(50)
+      expect(monster.LifePoints).toBeLessThan(monster.MaxLifePoints)
+
+    });
+  });
+
+
+  

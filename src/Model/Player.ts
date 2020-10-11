@@ -88,16 +88,18 @@ export class Player {
 
     public ReceiveDamage(attack:number)
     {
-        if(attack <= this._Defense)
-        return;
 
-        if(this._LifePoints <= this.minLifePoints)
-        return;
+        var damageReceived = 4 * (attack - this.Defense / 2)
+        this._LifePoints -= damageReceived;
 
-        this._LifePoints -= attack - this._Defense;
+    }
 
-        if(this._LifePoints <= 0)
-         this.PenalitesFromDeath();
+    public Died(){
+        if (this._LifePoints <= this.minLifePoints){
+            return true;
+        } else {
+         return false;
+        }
     }
     
     //trecho de código não testado

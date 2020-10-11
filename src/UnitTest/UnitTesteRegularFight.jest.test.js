@@ -8,6 +8,7 @@ import { RegularFight } from '../Model/Fight/RegularFight';
     player.CreatePlayerTest();
     var regularFight = new RegularFight();
     test('Monster die during a fight with player', () => {
+      player.CreatePlayerTest();
       regularFight.Fight(player);
       expect(player.LifePoints).toBeLessThan(100);
       console.log("Player tomou dano e seu HP desceu para " + player.LifePoints);
@@ -15,7 +16,7 @@ import { RegularFight } from '../Model/Fight/RegularFight';
     });
 
     it('Experience must increase when player kill the monster', () => {
-    
+      player.CreatePlayerTest();
       regularFight.Fight(player);
       expect(player.Experience).toBeGreaterThan(0);
       console.log("Experiencia do cliente subiu para" + player.Experience);
@@ -24,9 +25,9 @@ import { RegularFight } from '../Model/Fight/RegularFight';
     });
 
     it('Coins must increase when player kill the monster', () => {
-    
+      player.CreatePlayerTest();
       regularFight.Fight(player);
-      expect(player.Coin).toBeGreaterThan(0);
+      expect(player.Coins).toBeGreaterThan(0);
       console.log("Moedas do cliente subiu para" + player.Coins);
 
 

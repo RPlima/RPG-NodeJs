@@ -18,12 +18,14 @@ export class RegularFight{
        do
        {
            monster.ReceiveDamage(player.Attack);
-           player.ReceiveDamage(monster.Attack);
+           if(monster.LifePoints > 0){
+            player.ReceiveDamage(monster.Attack);
+            }
        }
-       while(player.LifePoints <= 0 || monster.LifePoints <= 0);
+       while(player.LifePoints > 0 &&  monster.LifePoints > 0 );
 
        
-       if(player.LifePoints <= 0)
+       if(player.Died())
        {
         player.PenalitesFromDeath();
         console.log("Player Morreu");

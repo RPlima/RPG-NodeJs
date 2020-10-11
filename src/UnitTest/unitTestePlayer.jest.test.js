@@ -33,7 +33,7 @@ describe('Actions Player', () => {
   var player = new Player("Shake");
   test('receive damage', () => {
     player.ReceiveDamage(2);
-    expect(player.LifePoints).toBe(99);
+    expect(player.LifePoints).toBeLessThan(player.MaxLifePoints);
   });
 });
 
