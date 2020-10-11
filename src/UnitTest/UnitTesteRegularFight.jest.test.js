@@ -33,4 +33,18 @@ import { RegularFight } from '../Model/Fight/RegularFight';
 
     });
 
+    //TODO
+    it('Player may die if his life points hits 0 or less', () => {
+      player.CreateWeakPlayerTest();
+      regularFight.Fight(player);
+      
+
+    });
+    //TODO
+    it('LEVEL UP', () => {
+      
+      
+
+    });
+
 });

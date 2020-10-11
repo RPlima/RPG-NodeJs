@@ -102,7 +102,7 @@ export class Player {
         }
     }
     
-    //trecho de código não testado
+    //Precisa ser corrigido
     public PenalitesFromDeath()
     {
         if(this._Level == 0 )
