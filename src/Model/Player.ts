@@ -135,6 +135,7 @@ export class Player
     //Precisa do cálculo de experiência antes.
     public PenalitesFromDeath()
     {
+
         if (this._Level == 1)
             return;
 
@@ -145,14 +146,14 @@ export class Player
             this._ExperienceToMinimunLevel = this.ExperiencePreviousMinimunLevel;
             this._ExperienceToNextLevel = this.ExperiencePreviousNextLevel;
 
-            this._LifePoints = this._MaxLifePoints - 10;
+            this._MaxLifePoints = this._MaxLifePoints - 10;
             this._Defense = this.Defense - 1;
             this._Attack = this.Attack - 1;
             this._Level = this.Level - 1;
         }
+        this._Coins = Math.floor(this._Coins * 0.95)
     }
 
-    //trecho de código não testado
     public LevelUp()
     {
         this._Defense = this.Defense + 1;
@@ -165,7 +166,8 @@ export class Player
         this._ExperiencePreviousMinimunLevel = this.ExperienceMinimunLevel;
         
         this._ExperienceToMinimunLevel = this.ExperienceToNextLevel;
-        this._ExperienceToNextLevel += (this._ExperienceToNextLevel * 1.5);
+        this._ExperienceToNextLevel += Math.floor(this._ExperienceToNextLevel * 1.5) ;
+        this._Coins += this.Level * 100
     }
 
     public ReceiveDrop(Drop: Lootbag) 

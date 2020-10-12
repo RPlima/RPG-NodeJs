@@ -26,12 +26,10 @@ export class RegularFight{
        if(player.Died())
        {
         player.PenalitesFromDeath();
-        //console.log("Player Morreu");
         return true;
        }
        else
        {
-        //console.log("Monstro Morreu");
         player.ReceiveDrop(monster.DropOnDeath());
         return false;
        }

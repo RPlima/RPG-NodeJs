@@ -1,4 +1,5 @@
 const { TestResult } = require('@jest/types');
+import { Lootbag } from '../Model/Lootbag';
 import { Player } from '../Model/Player';
 
   describe('Create Player', () => {
@@ -31,9 +32,22 @@ import { Player } from '../Model/Player';
 
 describe('Actions Player', () => {
   var player = new Player("Shake");
-  test('receive damage', () => {
+  test('Receive damage', () => {
     player.ReceiveDamage(2);
     expect(player.LifePoints).toBeLessThan(player.MaxLifePoints);
+  });
+
+  test('LEVEL UP!', () => {
+    var loot = new Lootbag(player.ExperienceToNextLevel,0,null)
+    var attackInitial = player.Attack;
+    var expInitial = player.Experience;
+    var level = player.Level;
+    var maxLife = player.MaxLifePoints;
+    player.ReceiveDrop(loot);
+    expect(player.Attack).toBeGreaterThan(attackInitial);
+    expect(player.Experience).toBeGreaterThan(expInitial);
+    expect(player.MaxLifePoints).toBeGreaterThan(maxLife);
+    expect(player.Level).toBeGreaterThan(level);
   });
 });
 
