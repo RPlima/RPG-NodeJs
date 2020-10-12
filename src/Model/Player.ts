@@ -23,7 +23,8 @@ export class Player {
         this._Defense = this.defenseInitial;
         this._AreaId = this.areaIdInitial;
         this._Coins = this.coinsInitial;
-        this.__ExperienceToNextLevel = this.experienceToNextLevel;
+        this._ExperienceToNextLevel = this.experienceToNextLevel;
+        this._MaxExperienceLastLevel = this.experienceToNextLevel;
         
     }
 
@@ -36,7 +37,8 @@ export class Player {
     private _Defense: number;
     private _AreaId: number;
     private _Coins: number;
-    private __ExperienceToNextLevel: number;
+    private _ExperienceToNextLevel: number;
+    private _MaxExperienceLastLevel: number;
 
     public get LifePoints(): number 
     {
@@ -77,6 +79,10 @@ export class Player {
         return this._Coins;
     }
 
+    public get ExperienceToNextLevel(): number{
+        return this._ExperienceToNextLevel;
+    }
+
     private SanitazeNamePlayer(name:string) : string
     {
        if(name.length == 0 || !name.trim())
@@ -105,22 +111,23 @@ export class Player {
     //Precisa ser corrigido
     public PenalitesFromDeath()
     {
-        if(this._Level == 0 )
+
+        this._LifePoints = this._MaxLifePoints;
+        if(this._Level == 1 )
         return;
-        
-        this._LifePoints = this._MaxLifePoints - 10;
-        this._Defense = this.Defense - 1;
-        this._Attack = this.Attack - 1;
+        this._Experience = this._MaxExperienceLastLevel
+        this._Coins = Math.floor(this._Coins * 0.95)
     }
 
-    //trecho de código não testado
     public LevelUp()
     {
+        this._MaxExperienceLastLevel = this._ExperienceToNextLevel;
         this._Defense = this.Defense + 1;
         this._Attack = this.Attack + 1;
         this._MaxLifePoints = this.MaxLifePoints + 10;
         this._Level += 1; 
-        this.__ExperienceToNextLevel *= 1.5;
+        this._ExperienceToNextLevel = Math.floor(this._ExperienceToNextLevel * 1.5) ;
+        this._Coins += this.Level * 100
     }
     
     public ReceiveDrop(Drop: Lootbag)
@@ -132,7 +139,7 @@ export class Player {
     public ReceiveExp(exp :number)
     {
         this._Experience += exp;
-        if(this.Experience >= this.__ExperienceToNextLevel)
+        if(this.Experience >= this._ExperienceToNextLevel)
         this.LevelUp();
     }
 
@@ -153,11 +160,6 @@ export class Player {
         this._LifePoints = 1
     }
 
-    //TODO Create class monster first
-    // public DealDamage(attack:number)
-    // {
-    //     if(attack <= this.Defense)
-    //     return;
-    // }
+   
 
 }

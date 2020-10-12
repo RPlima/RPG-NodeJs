@@ -1,17 +1,16 @@
 const { TestResult } = require('@jest/types');
 import { Player } from '../Model/Player';
-import { Monster } from '../Model/Monster';
 import { RegularFight } from '../Model/Fight/RegularFight';
+import { Lootbag } from '../Model/Lootbag';
 
   describe('Regular fight', () => {
     var player = new Player("Molina");
     player.CreatePlayerTest();
     var regularFight = new RegularFight();
-    test('Monster die during a fight with player', () => {
+    it('Monster die during a fight with player', () => {
       player.CreatePlayerTest();
       regularFight.Fight(player);
       expect(player.LifePoints).toBeLessThan(100);
-      console.log("Player tomou dano e seu HP desceu para " + player.LifePoints);
       
     });
 
@@ -19,7 +18,6 @@ import { RegularFight } from '../Model/Fight/RegularFight';
       player.CreatePlayerTest();
       regularFight.Fight(player);
       expect(player.Experience).toBeGreaterThan(0);
-      console.log("Experiencia do cliente subiu para" + player.Experience);
 
 
     });
@@ -28,23 +26,22 @@ import { RegularFight } from '../Model/Fight/RegularFight';
       player.CreatePlayerTest();
       regularFight.Fight(player);
       expect(player.Coins).toBeGreaterThan(0);
-      console.log("Moedas do cliente subiu para" + player.Coins);
-
 
     });
 
     //TODO
     it('Player may die if his life points hits 0 or less', () => {
-      player.CreateWeakPlayerTest();
-      regularFight.Fight(player);
-      
-
-    });
-    //TODO
-    it('LEVEL UP', () => {
-      
-      
-
+      var playerWeek = new Player("Molina");
+      var loot = new Lootbag(playerWeek.ExperienceToNextLevel + 400,0,null)
+      playerWeek.ReceiveDrop(loot);
+      var expInitial = playerWeek.Experience;
+      var level = playerWeek.Level;
+      var coins = playerWeek.Coins;
+      playerWeek.CreateWeakPlayerTest
+      regularFight.Fight(playerWeek);
+      expect(playerWeek.Level).toBe(level)
+      expect(playerWeek.Experience).toBeLessThan(expInitial)
+      expect(playerWeek.Coins).toBeLessThan(coins)
     });
 
 });
