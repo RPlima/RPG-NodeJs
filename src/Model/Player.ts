@@ -1,4 +1,5 @@
 import { Lootbag } from "./Lootbag";
+import { Item } from "./Item";
 
 export class Player 
 {
@@ -31,6 +32,7 @@ export class Player
         this._ExperienceToMinimunLevel = this.experienceToMinimunLevel;
         this._ExperiencePreviousNextLevel = this.experiencePreviousNextLevel;
         this._ExperiencePreviousMinimunLevel = this.experiencePreviousMinimunLevel;
+        this._Items = Array<Item>();
     }
 
     private _LifePoints: number;
@@ -46,6 +48,7 @@ export class Player
     private _ExperienceToMinimunLevel: number;
     private _ExperiencePreviousNextLevel: number;
     private _ExperiencePreviousMinimunLevel: number;
+    private _Items: Array<Item>;
 
     public get LifePoints(): number 
     {
@@ -112,6 +115,10 @@ export class Player
         return this._ExperiencePreviousMinimunLevel;
     }
 
+    public get Items(): Array<Item> {
+        return this._Items;
+    }
+
     private SanitazeNamePlayer(name: string): string 
     {
         if (name.length == 0 || !name.trim()) 
@@ -174,6 +181,15 @@ export class Player
     {
         this.ReceiveCoins(Drop.GetCoins);
         this.ReceiveExp(Drop.GetExp);
+        this.ReceiveItems(Drop.GetItems);
+    }
+
+    public ReceiveItems(items: Array<Item>) 
+    {
+        if(items !=null && items.length > 0)
+            items.forEach(item => {
+                this._Items.push(item);
+            });
     }
 
     public ReceiveExp(exp: number) 

@@ -1,4 +1,4 @@
-import { Items } from "./Item";
+import { Item } from "./Item";
 import { Lootbag } from "./Lootbag";
 
 export class Monster {
@@ -124,7 +124,7 @@ export class Monster {
     //TODO
      public DropItem()
      {
-       return  new Array<Items>();
+       return  new Array<Item>();
     }
     
 

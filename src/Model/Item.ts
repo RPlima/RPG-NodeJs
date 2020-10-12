@@ -1,4 +1,4 @@
-export class Items implements InterfaceItems
+export class Item implements InterfaceItems
 {
     private _Name: string;
     private _Attack: number;

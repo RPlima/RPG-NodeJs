@@ -1,12 +1,12 @@
-import { Items } from "./Item";
+import { Item } from "./Item";
 
 export class Lootbag
 {
     private _Coins: number;
     private _Exp: number;
-    private _ItemList: Array<Items>;
+    private _ItemList: Array<Item>;
 
-    constructor(Exp: number, Coins: number, ItemList: Array<Items>){
+    constructor(Exp: number, Coins: number, ItemList: Array<Item>){
         this._Coins = Coins;
         this._Exp = Exp;
         this._ItemList = ItemList;
@@ -20,4 +20,7 @@ export class Lootbag
         return this._Exp;
     }
 
+    public get GetItems(): Array<Item> {
+        return this._ItemList;
+    }
 }

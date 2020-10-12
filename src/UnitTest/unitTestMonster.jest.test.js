@@ -23,7 +23,7 @@ import { Monster } from '../Model/Monster';
   });
 
   describe('Recieve damage', () => {
-    var monster = new lib_Monster.Monster();
+    var monster = new Monster();
 
     it('Should receive damage when attacked', () => {
 
