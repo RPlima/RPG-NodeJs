@@ -116,7 +116,7 @@ export class Player
         return this._ExperiencePreviousMinimunLevel;
     }
 
-    public get Items(): Inventory {
+    public get Inventory(): Inventory {
         return this._Inventory;
     }
 
@@ -187,10 +187,7 @@ export class Player
 
     public ReceiveItems(items: Array<Item>) 
     {
-        // if(items !=null && items.length > 0)
-        //     items.forEach(item => {
-        //         this._Inventory.push(item);
-        //     });
+        this.Inventory.AddItemsInventory(items);
     }
 
     public ReceiveExp(exp: number) 
@@ -204,7 +201,6 @@ export class Player
     {
         this._Coins += coins;
     }
-
 
     public CreatePlayerTest() 
     {

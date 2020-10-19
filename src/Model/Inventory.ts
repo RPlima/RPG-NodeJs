@@ -32,4 +32,15 @@ export class Inventory
         if(item !== null || item !== undefined)
             this._Items.splice(this._Items.indexOf(item), 1);
     }
+
+    public EquipSword(sword: Item)
+    {
+        this._EquippedSword = sword;
+    }
+
+    public EquipArmor(armor: Item)
+    {
+        this._EquippedArmor = armor;
+    }
+
 }
