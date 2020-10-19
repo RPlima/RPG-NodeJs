@@ -1,4 +1,4 @@
-import { Items } from "./Item";
+import { Item } from "./Item";
 
 export class ItemsRecipe implements InterfaceItems{
     private _Name: string;
@@ -11,5 +11,4 @@ export class ItemsRecipe implements InterfaceItems{
     {
         this._Name = name;
     }
-
 }

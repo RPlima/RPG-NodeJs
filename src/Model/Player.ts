@@ -1,5 +1,6 @@
 import { Lootbag } from "./Lootbag";
 import { Item } from "./Item";
+import { Inventory } from "./Inventory";
 
 export class Player 
 {
@@ -32,7 +33,7 @@ export class Player
         this._ExperienceToMinimunLevel = this.experienceToMinimunLevel;
         this._ExperiencePreviousNextLevel = this.experiencePreviousNextLevel;
         this._ExperiencePreviousMinimunLevel = this.experiencePreviousMinimunLevel;
-        this._Items = Array<Item>();
+        this._Inventory = new Inventory();
     }
 
     private _LifePoints: number;
@@ -48,7 +49,7 @@ export class Player
     private _ExperienceToMinimunLevel: number;
     private _ExperiencePreviousNextLevel: number;
     private _ExperiencePreviousMinimunLevel: number;
-    private _Items: Array<Item>;
+    private _Inventory: Inventory;
 
     public get LifePoints(): number 
     {
@@ -115,8 +116,8 @@ export class Player
         return this._ExperiencePreviousMinimunLevel;
     }
 
-    public get Items(): Array<Item> {
-        return this._Items;
+    public get Items(): Inventory {
+        return this._Inventory;
     }
 
     private SanitazeNamePlayer(name: string): string 
@@ -186,10 +187,10 @@ export class Player
 
     public ReceiveItems(items: Array<Item>) 
     {
-        if(items !=null && items.length > 0)
-            items.forEach(item => {
-                this._Items.push(item);
-            });
+        // if(items !=null && items.length > 0)
+        //     items.forEach(item => {
+        //         this._Inventory.push(item);
+        //     });
     }
 
     public ReceiveExp(exp: number) 
