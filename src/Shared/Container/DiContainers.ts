@@ -4,8 +4,11 @@ import { container } from 'tsyringe';
 import { Player } from '../../Model/Player';
 import { Monster } from '../../Model/Monster';
 
-export { Player };
-container.register<Player>('Player',Player);
-
-export { Monster };
-container.register<Monster>('Monster',Monster);
+export class Containers
+{
+    public RegisterContainers()
+    {
+        container.register<Player>('Player',Player);
+        container.register<Monster>('Monster',Monster);
+    }
+}

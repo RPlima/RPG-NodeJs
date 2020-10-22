@@ -9,6 +9,6 @@ export class ItemsRecipe implements InterfaceItems{
 
     constructor()
     {
-        this._Name = name;
+        this._Name = this.Name;
     }
 }
