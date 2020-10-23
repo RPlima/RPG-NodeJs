@@ -1,19 +1,29 @@
-import { Client } from "discord.js";
 import "reflect-metadata";
-import { injectable, inject } from 'tsyringe';
-import { Containers } from './Shared/Container/DiContainers';
+import { injectable, inject, DependencyContainer } from "tsyringe";
+import { Containers } from "./Shared/Container/DiContainers";
+import { IClient } from "./Clients/IClient"
+import { IObservable } from "./Events/IObservable";
 
-@injectable()
+var registredContainers : DependencyContainer;
+
 export class StartApp
 {
+
     public Main() 
     {
         let containers = new Containers();
-        containers.RegisterContainers();
-        // let clientDiscord = new StartClientDiscord().StartClient();
-        // let HandlerMesseges = new HandlerMessege();
-        // HandlerMesseges.Handle(client);
+        registredContainers = containers.RegisterContainers();
+
+        let clients = registredContainers.resolveAll<IClient>("IClient");
+        clients.forEach(client => {
+            client.Login();
+        });
+        let observables = registredContainers.resolveAll<IObservable>("IObservable");
+        observables.forEach(observer => {
+            observer.Observer();
+        });
     }
 }
 
-const runApp = new StartApp().Main();
+new StartApp().Main();
+
