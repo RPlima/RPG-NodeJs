@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { DependencyContainer } from "tsyringe";
 import { Containers } from "./Shared/Container/DiContainers";
 import { IClient } from "./Clients/IClient"
-import { IObservable } from "./Events/IObservable";
+import { IObservable } from "./CommandsHandler/IObservable";
 import * as dotenv from "dotenv";
 
 var registredContainers : DependencyContainer;

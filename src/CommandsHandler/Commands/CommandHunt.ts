@@ -1,10 +1,10 @@
 import { Message } from "discord.js";
 import { injectable, Lifecycle, scoped } from "tsyringe";
-import { IEvents } from "./IEvents";
+import { ICommands } from "../ICommands";
 
 @scoped(Lifecycle.ResolutionScoped)
 @injectable()
-export class EventHunt implements IEvents
+export class CommandHunt implements ICommands
 {
     public Handle(message: Message)
     {

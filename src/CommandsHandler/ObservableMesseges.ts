@@ -1,7 +1,7 @@
 import { Client, Message } from "discord.js";
 import { inject, injectable, Lifecycle, scoped } from "tsyringe";
 import { IClient } from "../Clients/IClient";
-import { IEventsHandler } from "./IEventsHandler";
+import { ICommandsHandler } from "./IComandsHandler";
 import { IObservable } from "./IObservable"
 
 @scoped(Lifecycle.ResolutionScoped)
@@ -9,14 +9,14 @@ import { IObservable } from "./IObservable"
 export class ObservableMesseges implements IObservable
  {
     private IClient: IClient;
-    private IEventsHandler: IEventsHandler;
+    private ICommandsHandler: ICommandsHandler;
 
     constructor(
         @inject('IClient')iclient: IClient,
-        @inject('IEventsHandler')ieventHandler: IEventsHandler)
+        @inject('ICommandsHandler')ieventHandler: ICommandsHandler)
     {
         this.IClient = iclient;
-        this.IEventsHandler = ieventHandler;
+        this.ICommandsHandler = ieventHandler;
     }
 
     public Observer() 
@@ -26,10 +26,7 @@ export class ObservableMesseges implements IObservable
         {
             if (!this.AuthorizeMessege(message))
              return;
-            this.IEventsHandler.HandleEvents(message);
-            // if (command === "ping") 
-            // {
-            // }
+            this.ICommandsHandler.HandleCommands(message);
         });
     }
 

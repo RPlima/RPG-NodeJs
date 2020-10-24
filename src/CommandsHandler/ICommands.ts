@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
 
-export interface IEvents
+export interface ICommands
 {
     Handle(message: Message): void;
 }

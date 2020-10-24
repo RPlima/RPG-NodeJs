@@ -1,28 +1,21 @@
-import { Client, Message } from "discord.js";
-import { container, inject, injectable, Lifecycle, scoped } from "tsyringe";
-import { IEventsHandler } from "./IEventsHandler";
-import { IEvents } from "./IEvents";
+import { Message } from "discord.js";
+import { container, injectable, Lifecycle, scoped } from "tsyringe";
+import { ICommandsHandler } from "./IComandsHandler";
+import { ICommands } from "./ICommands";
 
     @scoped(Lifecycle.ResolutionScoped)
     @injectable()
-    export class EventsHandler implements IEventsHandler
+    export class CommandsHandler implements ICommandsHandler
     {
-       private IEvents : IEvents;
     
-       constructor(
-           @inject('IEvents')ievents: IEvents
-       )
-       {     
-           this.IEvents = ievents;
-       }
-    
-       public HandleEvents(message: Message) 
+       public HandleCommands(message: Message) 
        { 
-          const events = container.resolveAll<IEvents>("IEvents");
+          const events = container.resolveAll<ICommands>("ICommands");
           events.forEach(async event => 
           {
              const command = this.SanitazeMessege(message);
-             const eventName = event.constructor.name.replace(/event/ig, "").toLowerCase();
+             const eventName = event.constructor.name.replace(/command/ig, "").toLowerCase();
+             console.log(`${command} ${eventName}`);
              // await message.channel.send(typeof(event));
 
               if(eventName === command)
