@@ -1,3 +1,5 @@
 # dependencies
 /coverage
 /node_modules
+/dist
+/.env

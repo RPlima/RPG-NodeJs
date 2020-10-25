@@ -1,3 +1,4 @@
-interface InterfaceItems {
+interface InterfaceItems 
+{
     Name: string;
 }
