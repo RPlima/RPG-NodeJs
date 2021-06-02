@@ -17,7 +17,7 @@ import { ICommands } from "./ICommands";
              const eventName = event.constructor.name.replace(/command/ig, "").toLowerCase();
              console.log(`${command} ${eventName}`);
              // await message.channel.send(typeof(event));
-
+             
               if(eventName === command)
                 event.Handle(message);
           });

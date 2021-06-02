@@ -7,7 +7,7 @@ import { ICommands } from "../ICommands";
 export class CommandStart implements ICommands
 {
     public Handle(message: Message): void {
-        console.log(message.author.id);
+        console.log(message.author);
         
     }
      
