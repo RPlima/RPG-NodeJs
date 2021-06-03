@@ -6,7 +6,7 @@ import { ICommands } from "../ICommands";
 @injectable()
 export class CommandHunt implements ICommands
 {
-    public Handle(message: Message)
+    public Handle(message: Message,)
     {
         //Criar charmar tudo pra Luta -> RegularFight
         console.log("texto");

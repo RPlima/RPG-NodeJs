@@ -6,7 +6,7 @@ import { ICommands } from "../ICommands";
 @injectable()
 export class CommandStart implements ICommands {
     public Handle(message: Message): void {
-        //Criar o Player
+        
         console.log(message.author);
 
     }
