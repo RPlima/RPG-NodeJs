@@ -27,6 +27,7 @@ export class StartApp
         {
             observer.Observer();
         });
+        console.log("Server is Running!!!");
     }
 }
 

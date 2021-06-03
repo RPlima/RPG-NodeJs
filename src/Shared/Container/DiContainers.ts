@@ -12,6 +12,8 @@ import { CommandHunt } from "../../CommandsHandler/Commands/CommandHunt";
 import { ICommandsHandler } from "../../CommandsHandler/IComandsHandler";
 import { ICommands } from "../../CommandsHandler/ICommands";
 import { CommandStart } from "../../CommandsHandler/Commands/CommandStart";
+import { BotNotFoundMessage } from "../../BotMessage/BotNotFoundMessage";
+import { GeneralHelpMessages } from "../../BotMessage/BotHelpMessage/GeneralHelpMessages";
 
 export class Containers
 {
@@ -25,7 +27,8 @@ export class Containers
         container.register<ICommandsHandler>("ICommandsHandler", CommandsHandler);
         container.register<ICommands>("ICommands", CommandHunt);
         container.register<ICommands>("ICommands", CommandStart)
-        
+        container.register<BotNotFoundMessage>("BotNotFoundMessage", BotNotFoundMessage);
+        container.register<GeneralHelpMessages>("GeneralHelpMessages", GeneralHelpMessages);
         return container;
     }
 }

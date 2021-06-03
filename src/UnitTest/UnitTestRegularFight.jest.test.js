@@ -7,7 +7,11 @@ import { Lootbag } from '../Model/Lootbag';
     var player = new Player("Molina");
     player.CreatePlayerTest();
     var regularFight = new RegularFight();
-    it('Monster die during a fight with player', () => {
+    // var testando = ["texto","text","tex","te","t",""];
+    // var teste = Any();
+    // teste = testando;
+    // console.log(teste.name);
+    it('Player health drop when he attack a monster', () => {
       player.CreatePlayerTest();
       regularFight.Fight(player);
       expect(player.LifePoints).toBeLessThan(100);
